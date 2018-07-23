@@ -25,3 +25,12 @@ send \"\n\"
 expect \"$\"
 exit 0
 "
+
+npm i express
+express -v ejs -f
+npm i
+
+mv public/stylesheets/ public/css/
+mv public/javascripts/ public/js/
+
+sed -i -e "s/stylesheets/css/g" views/index.ejs
