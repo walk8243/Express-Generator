@@ -34,3 +34,6 @@ mv public/stylesheets/ public/css/
 mv public/javascripts/ public/js/
 
 sed -i -e "s/stylesheets/css/g" views/index.ejs
+
+npm i node-sass
+cp `dirname $0`/sass.js `pwd`/
