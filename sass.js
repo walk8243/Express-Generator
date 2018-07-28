@@ -1,22 +1,29 @@
-const sass  = require('node-sass'),
+/*
+ * 外部モジュール
+ */
+const nodeSass  = require('node-sass'),
       fs    = require('fs');
 
-var sassRegExp = new RegExp('^[^\\_].+\\.(sass|scss)');
+/*
+ * ユーザ定義モジュール
+ */
+const func  = require('./func');
 
-var refineSassFiles = path => {
-  return new Promise((resolve, reject) => {
-    fs.readdir(path, (err, files) => {
-      if(err) reject(err);
-      var fileList = files.filter(file => {
-        return fs.statSync(`${path}/${file}`).isFile() && sassRegExp.test(file);
-      });
-      resolve(fileList);
-    });
-  });
+/*
+ * 変数
+ */
+const sassCond  = new RegExp('.+\\.(sass|scss)'),
+      renderingSassCond = new RegExp('^[^\\_].+\\.(sass|scss)');
+
+async function getSassFiles(path = './public/css') {
+  return await func.searchCriteriaFile(path, sassCond);
+}
+async function getRenderingSassFiles(path = './public/css') {
+  return await func.searchCriteriaFile(path, renderingSassCond);
 }
 
-var renderSass  = file => {
-  sass.render({
+function renderSass(file) {
+  nodeSass.render({
     file: file,
     outputStyle: "compressed",
     outputFile: file.replace(/\.(sass|scss)/, '.css')
@@ -28,20 +35,22 @@ var renderSass  = file => {
   });
 }
 
-module.exports = async (path) => {
-  var pathStats = fs.statSync(path);
-  if(pathStats.isDirectory()) {
-    var sassList  = await refineSassFiles(path);
-    for(let sassFile of sassList) {
-      renderSass(`${path}/${sassFile}`);
-    }
-  } else if(pathStats.isFile()) {
+function render(path) {
+  if(fs.statSync(path).isFile()) {
     if(path.match(sassRegExp)) {
       renderSass(path);
+      return;
     } else {
       throw new Error();
     }
   } else {
     throw new Error();
   }
+}
+
+module.exports = sass = {
+  getSassFiles,
+  getRenderingSassFiles,
+  renderSass,
+  render,
 }
