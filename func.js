@@ -19,17 +19,7 @@ var searchCriteriaFile = (path, filter) => new Promise((resolve, reject) => {
   });
 });
 
-var searchCriteriaFileSync = async (path, filter) => {
-  var fileList = await searchCriteriaFile(path, filter).catch(err => {
-    console.error(err);
-    return new Array();
-  });
-  console.log(fileList);
-  return fileList;
-};
 
-
-module.exports = {
-  searchCriteriaFile: searchCriteriaFile,
-  searchCriteriaFileSync: searchCriteriaFileSync,
+module.exports = func = {
+  searchCriteriaFile,
 };
