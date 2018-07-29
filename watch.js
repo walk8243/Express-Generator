@@ -1,34 +1,18 @@
-/*
- * 外部モジュール
- */
-const fs = require('fs');
+module.exports = (async () => {
+  const js    = require('./module/js'),
+        sass  = require('./module/sass'),
+        watch = require('./module/watch');
 
-
-function watchFile(target = [], func) {
-  if(!Array.isArray(target)) {
-    if(typeof target === 'string') {
-      target = new Array(target);
-    } else {
-      // 配列でもファイル単体でもない場合
-      throw new TypeError('`target` is neither an array nor a single file.');
-    }
-  } else if(target.length == 0) {
-    // ファイルが指定されなかった場合
-    throw new TypeError('`target` is not specified.');
+  // sassを監視して、コンパイル
+  var sassFiles = await sass.getSassFiles(),
+      renderingSassFiles = await sass.getRenderingSassFiles();
+  if(sassFiles.length) {
+    watch.watchFile(sassFiles, (() => {sass.render(renderingSassFiles)}));
   }
 
-  for(let file of target) {
-    if(fs.statSync(file).isFile()) {
-      fs.watchFile(file, (current, previous) => {
-        func();
-      });
-    } else {
-      // パスが存在しない場合 or ファイルでない場合
-      throw new ReferenceError('Path doesn\'t exist or isn\'t file.');
-    }
+  // jsを監視して、圧縮
+  var jsFiles = await js.getJsFiles();
+  if(jsFiles.length) {
+    watch.watchFile(jsFiles, (() => {js.compress(jsFiles)}));
   }
-}
-
-module.exports = watch = {
-  watchFile,
-}
+})();
