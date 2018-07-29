@@ -25,7 +25,7 @@ async function getRenderingSassFiles(path = './public/css') {
 function renderSass(file) {
   if(!fs.statSync(file).isFile()) {
     // パスが存在しない場合 or ファイルでない場合
-    throw new Error();
+    throw new ReferenceError('Path doesn\'t exist or isn\'t file.');
   }
 
   nodeSass.render({
