@@ -1,3 +1,6 @@
+/*
+ * 外部モジュール
+ */
 const fs = require('fs');
 
 

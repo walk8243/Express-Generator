@@ -15,6 +15,7 @@ const func  = require('./func');
 const sassCond  = new RegExp('.+\\.(sass|scss)'),
       renderingSassCond = new RegExp('^[^\\_].+\\.(sass|scss)');
 
+
 async function getSassFiles(path = './public/css') {
   return await func.searchCriteriaFile(path, sassCond);
 }
