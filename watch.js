@@ -1,20 +1,14 @@
-// sassを監視して、コンパイル
-(async () => {
-  const sass = require('./sass'),
-        watch = require('./watch');
+module.exports = (async () => {
+  const js    = require('./module/js'),
+        sass  = require('./module/sass'),
+        watch = require('./module/watch');
 
+  // sassを監視して、コンパイル
   var sassFiles = await sass.getSassFiles(),
       renderingSassFiles = await sass.getRenderingSassFiles();
-
   watch.watchFile(sassFiles, (() => {sass.render(renderingSassFiles)}));
-})();
 
-// jsを監視して、圧縮
-(async () => {
-  const js = require('./js'),
-        watch = require('./watch');
-
+  // jsを監視して、圧縮
   var jsFiles = await js.getJsFiles();
-
   watch.watchFile(jsFiles, (() => {js.compress(jsFiles)}));
 })();
