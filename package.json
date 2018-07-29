@@ -1,0 +1,23 @@
+{
+  "name": "express-generator",
+  "version": "1.0.0",
+  "description": "ExpressアプリケーションをSHで簡単セットアップ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/walk8243/Express-Generator.git"
+  },
+  "author": "walk8243",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/walk8243/Express-Generator/issues"
+  },
+  "homepage": "https://github.com/walk8243/Express-Generator#readme",
+  "dependencies": {
+    "node-sass": "^4.9.2",
+    "uglify-js": "^3.4.6"
+  }
+}
