@@ -24,10 +24,10 @@ expect \"Is this OK?\"
 send \"\n\"
 expect \"$\"
 exit 0
-"
+" > /dev/null
 
 npm i express
-express -v ejs -f
+express -v ejs -f > /dev/null
 npm i
 
 mv public/stylesheets/ public/css/
