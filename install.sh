@@ -39,3 +39,5 @@ npm i node-sass uglify-js
 cp -r `dirname $0`/module `pwd`/
 cp `dirname $0`/watch.js `pwd`/
 cp `dirname $0`/bin/www `pwd`/bin/
+
+git ignore node,sass
