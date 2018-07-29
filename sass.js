@@ -23,7 +23,10 @@ async function getRenderingSassFiles(path = './public/css') {
 }
 
 function renderSass(file) {
-  if(!fs.statSync(file).isFile()) throw new Error();
+  if(!fs.statSync(file).isFile()) {
+    // パスが存在しない場合 or ファイルでない場合
+    throw new Error();
+  }
 
   nodeSass.render({
     file: file,
@@ -42,9 +45,11 @@ function render(target = []) {
     if(typeof target === 'string') {
       target = new Array(target);
     } else {
+      // 配列でもファイル単体でもない場合
       throw new Error();
     }
   } else if(target.length == 0) {
+    // ファイルが指定されなかった場合
     throw new Error();
   }
 
@@ -54,9 +59,12 @@ function render(target = []) {
         renderSass(path);
         return;
       } else {
-        throw new Error();
+        // レンダリング対象でない場合
+        // throw new Error();
+        continue;
       }
     } else {
+      // パスが存在しない場合 or ファイルでない場合
       throw new Error();
     }
   }

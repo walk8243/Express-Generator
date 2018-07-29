@@ -19,9 +19,11 @@ function watchFile(target = [], func) {
     if(typeof target === 'string') {
       target = new Array(target);
     } else {
+      // 配列でもファイル単体でもない場合
       throw new Error();
     }
   } else if(target.length == 0) {
+    // ファイルが指定されなかった場合
     throw new Error();
   }
 
@@ -31,6 +33,7 @@ function watchFile(target = [], func) {
         func();
       });
     } else {
+      // パスが存在しない場合 or ファイルでない場合
       throw new Error();
     }
   }
