@@ -23,6 +23,8 @@ async function getRenderingSassFiles(path = './public/css') {
 }
 
 function renderSass(file) {
+  if(!fs.statSync(file).isFile()) throw new Error();
+
   nodeSass.render({
     file: file,
     outputStyle: "compressed",
@@ -35,16 +37,28 @@ function renderSass(file) {
   });
 }
 
-function render(path) {
-  if(fs.statSync(path).isFile()) {
-    if(path.match(sassRegExp)) {
-      renderSass(path);
-      return;
+function render(target = []) {
+  if(!Array.isArray(target)) {
+    if(typeof target === 'string') {
+      target = new Array(target);
     } else {
       throw new Error();
     }
-  } else {
+  } else if(target.length == 0) {
     throw new Error();
+  }
+
+  for (let path of target) {
+    if(fs.statSync(path).isFile()) {
+      if(path.match(renderingSassCond)) {
+        renderSass(path);
+        return;
+      } else {
+        throw new Error();
+      }
+    } else {
+      throw new Error();
+    }
   }
 }
 
