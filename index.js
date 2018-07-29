@@ -1,7 +1,8 @@
-const sass = require('./sass'),
-      watch = require('./watch');
-
+// sassを監視して、コンパイル
 (async () => {
+  const sass = require('./sass'),
+        watch = require('./watch');
+
   var sassFiles = await sass.getSassFiles(),
       renderingSassFiles = await sass.getRenderingSassFiles();
 
