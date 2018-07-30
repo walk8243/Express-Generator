@@ -1,30 +1,6 @@
 #!/bin/sh
 
-expect -c "
-spawn npm init
-expect \"package name:\"
-send \"\n\"
-expect \"version:\"
-send \"\n\"
-expect \"description:\"
-send \"\n\"
-expect \"entry point:\"
-send \"\n\"
-expect \"test command:\"
-send \"\n\"
-expect \"git repository:\"
-send \"\n\"
-expect \"keywords:\"
-send \"\n\"
-expect \"author:\"
-send \"\n\"
-expect \"license:\"
-send \"\n\"
-expect \"Is this OK?\"
-send \"\n\"
-expect \"$\"
-exit 0
-" > /dev/null
+npm init --yes > /dev/null
 
 npm i express
 express -v ejs -f > /dev/null
@@ -41,3 +17,6 @@ cp `dirname $0`/watch.js `pwd`/
 cp `dirname $0`/bin/www `pwd`/bin/
 
 git ignore node,sass
+
+npm set init.license "MIT"
+npm init --yes > /dev/null
