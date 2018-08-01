@@ -18,6 +18,7 @@ cp `dirname $0`/bin/www `pwd`/bin/
 
 git ignore node,sass
 
-npm set init.author "walk8243 (https://qiita.com/walk8243)"
+npm set init.author.name "walk8243"
+npm set init.author.url "https://qiita.com/walk8243"
 npm set init.license "MIT"
 npm init --yes > /dev/null
