@@ -1,5 +1,7 @@
 #!/bin/sh
 
+[ ! -d ".git" ] && git init
+
 npm init --yes > /dev/null
 
 npm i express
@@ -28,3 +30,6 @@ npm set init.author.name "walk8243"
 npm set init.author.url "https://qiita.com/walk8243"
 npm set init.license "MIT"
 npm init --yes > /dev/null
+
+git add .
+git commit -m "walk8243-eac"
