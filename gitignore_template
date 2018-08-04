@@ -78,4 +78,5 @@ typings/
 *.css.map
 *.sass.map
 *.scss.map
-public/css/
+public/css/*
+!public/css/empty
