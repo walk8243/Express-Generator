@@ -15,8 +15,7 @@ npm i node-sass uglify-js
 cp -r `dirname $0`/module `pwd`/
 cp `dirname $0`/watch.js `pwd`/
 cp `dirname $0`/bin/www `pwd`/bin/
-
-git ignore node,sass
+cp `dirname $0`/gitignore_template `pwd`/.gitignore
 
 npm set init.author.name "walk8243"
 npm set init.author.url "https://qiita.com/walk8243"
