@@ -17,6 +17,10 @@ cp `dirname $0`/watch.js `pwd`/
 cp `dirname $0`/bin/www `pwd`/bin/
 cp `dirname $0`/gitignore_template `pwd`/.gitignore
 
+touch `pwd`/public/css/empty
+touch `pwd`/public/js/empty
+touch `pwd`/public/images/empty
+
 npm set init.author.name "walk8243"
 npm set init.author.url "https://qiita.com/walk8243"
 npm set init.license "MIT"
