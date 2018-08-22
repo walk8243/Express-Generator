@@ -7,6 +7,9 @@ npm init --yes > /dev/null
 npm i express
 express -v ejs -f > /dev/null
 npm i
+npm i config js-yaml
+
+cp -r `dirname $0`/config `pwd`/
 
 mv public/stylesheets/ public/css/
 mv public/javascripts/ public/js/
