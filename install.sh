@@ -1,5 +1,7 @@
 #!/bin/sh
 
+[ ! -d ".git" ] && git init
+
 npm init --yes > /dev/null
 
 npm i express
@@ -15,8 +17,19 @@ npm i node-sass uglify-js
 cp -r `dirname $0`/module `pwd`/
 cp `dirname $0`/watch.js `pwd`/
 cp `dirname $0`/bin/www `pwd`/bin/
+cp `dirname $0`/gitignore_template `pwd`/.gitignore
 
-git ignore node,sass
+mkdir sass
+mv public/css/style.css sass/style.scss
 
+touch `pwd`/public/css/empty
+touch `pwd`/public/js/empty
+touch `pwd`/public/images/empty
+
+npm set init.author.name "walk8243"
+npm set init.author.url "https://qiita.com/walk8243"
 npm set init.license "MIT"
 npm init --yes > /dev/null
+
+git add .
+git commit -m "walk8243-eac"
