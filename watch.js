@@ -6,9 +6,11 @@ var defaults  = {
 
 module.exports = watch = async (options) => {
   options = Object.assign(defaults, options);
-  const js    = require('./module/js'),
+  const js    = require('./module/js')({
+          src : options.js,
+        }),
         sass  = require('./module/sass')({
-          src: options.srcSass,
+          src : options.srcSass,
           dest: options.destSass,
         }),
         watch = require('./module/watch');
