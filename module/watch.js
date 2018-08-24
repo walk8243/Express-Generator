@@ -29,6 +29,15 @@ function watchFile(target = [], func) {
   }
 }
 
+function easyTryCatch(tryFunc = () => {}) {
+  try {
+    tryFunc();
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 module.exports = watch = {
   watchFile,
+  easyTryCatch,
 }
