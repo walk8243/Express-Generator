@@ -29,6 +29,7 @@ mv public/css/style.css sass/style.scss
 touch `pwd`/public/css/empty
 touch `pwd`/public/js/empty
 touch `pwd`/public/images/empty
+cp `dirname $0`/favicon.ico `pwd`/public/favicon.ico
 
 npm set init.author.name "walk8243"
 npm set init.author.url "https://qiita.com/walk8243"
