@@ -18,6 +18,7 @@ sed -i -e "s/stylesheets/css/g" views/index.ejs
 
 npm i node-sass uglify-js
 cp -r `dirname $0`/module `pwd`/
+cp -r `dirname $0`/views `pwd`/
 cp `dirname $0`/watch.js `pwd`/
 cp `dirname $0`/bin/www `pwd`/bin/
 cp `dirname $0`/gitignore_template `pwd`/.gitignore
