@@ -36,10 +36,11 @@ touch `pwd`/public/js/empty
 touch `pwd`/public/images/empty
 
 # パッケージ情報を更新
-npm set init.author.name "walk8243"
-npm set init.author.url "https://qiita.com/walk8243"
-npm set init.license "MIT"
-npm init --yes > /dev/null
+expect -c "
+spawn node `dirname $0`/init
+expect \"Is this OK? (yes)\"
+send \"yes\n\"
+expect "
 npm i
 
 # 初期コミット
