@@ -9,10 +9,10 @@ npm init --yes > /dev/null
 # Expressジェネレータの起動
 npm i express
 express -v ejs -f > /dev/null
-npm i
 
 # npmモジュールのインストール
 npm i config js-yaml node-sass uglify-js
+npm i mocha sinon supertest --save-dev
 
 # テンプレートファイルのコピー
 cp -r `dirname $0`/module `pwd`/
@@ -40,6 +40,7 @@ npm set init.author.name "walk8243"
 npm set init.author.url "https://qiita.com/walk8243"
 npm set init.license "MIT"
 npm init --yes > /dev/null
+npm i
 
 # 初期コミット
 git add .
