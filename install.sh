@@ -18,7 +18,6 @@ npm uninstall debug morgan
 # テンプレートファイルのコピー
 cp -r `dirname $0`/module `pwd`/
 cp -r `dirname $0`/views `pwd`/
-cp `dirname $0`/watch.js `pwd`/
 cp `dirname $0`/bin/www `pwd`/bin/
 cp `dirname $0`/app.js `pwd`/
 cp -r `dirname $0`/config `pwd`/

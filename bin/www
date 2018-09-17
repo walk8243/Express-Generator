@@ -5,6 +5,9 @@
  */
 
 logger = require('walk8243-logger').color(process.env.NODE_ENV || 'development');
+var path = require('path');
+repoDir = path.dirname(__dirname);
+
 var app = require('../app');
 var http = require('http');
 var config = require('config');
@@ -30,8 +33,8 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
-require('../watch')({
-  srcSass: './sass',
+require('../module/watch')({
+  srcSass: `${repoDir}/sass`,
 });
 
 /**

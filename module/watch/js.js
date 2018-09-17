@@ -17,7 +17,7 @@ const jsCond  = new RegExp('^(?!.+\\.min\\.js$).+\\.js$');
 
 class Js {
   constructor(options = {}) {
-    this.src  = options.src || './public/js';
+    this.src  = options.src || `${repoDir}/public/js`;
   }
 
   async getJsFiles(path = this.src) {
