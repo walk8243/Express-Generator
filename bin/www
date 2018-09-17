@@ -6,8 +6,8 @@
 
 require('../module/startup');
 var app = require('../app');
-var http = require('http');
-var config = require('config');
+const http    = require('http'),
+      config  = require('config');
 
 /**
  * Get port from environment and store in Express.
