@@ -30,11 +30,12 @@ mv public/javascripts/ public/js/
 sed -i -e "s/stylesheets/css/g" views/index.ejs
 
 # ファイルを作成
-mkdir sass
-mv public/css/style.css sass/style.scss
+mkdir `pwd`/sass
+mv `pwd`/public/css/style.css `pwd`/sass/style.scss
 touch `pwd`/public/css/empty
 touch `pwd`/public/js/empty
 touch `pwd`/public/images/empty
+mkdir `pwd`/lib
 
 # パッケージ情報を更新
 expect -c "
