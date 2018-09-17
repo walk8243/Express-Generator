@@ -19,6 +19,7 @@ npm uninstall debug morgan
 cp -r `dirname $0`/module `pwd`/
 cp -r `dirname $0`/views `pwd`/
 cp `dirname $0`/bin/www `pwd`/bin/
+cp -r `dirname $0`/test `pwd`/
 cp `dirname $0`/app.js `pwd`/
 cp -r `dirname $0`/config `pwd`/
 cp `dirname $0`/gitignore_template `pwd`/.gitignore
