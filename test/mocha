@@ -1,9 +1,6 @@
 #!/usr/bin/env node
 
-logger = require('walk8243-logger').color(process.env.NODE_ENV || 'development');
-var path = require('path');
-repoDir = path.dirname(__dirname);
-
+require('../module/startup');
 
 describe('', () => {
 

@@ -15,13 +15,13 @@ app.set('view engine', 'ejs');
 
 switch(app.get('env')) {
   case 'production':
-    app.use(log4js.connectLogger(logger, {
+    app.use(log4js.connectLogger(process.logger, {
       level: 'INFO',
       format: ':remote-addr - ":method :url HTTP/:http-version" :status :content-length ":referrer" ":user-agent"'
     }));
     break;
   default:
-    app.use(log4js.connectLogger(logger, { level: 'auto', format: ':method :status :url' }));
+    app.use(log4js.connectLogger(process.logger, { level: 'auto', format: ':method :status :url' }));
     break;
 }
 app.use(express.json());
@@ -39,7 +39,7 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  logger.error(err);
+  process.logger.error(err);
 
   // set locals, only providing error in development
   res.locals.message = err.message;

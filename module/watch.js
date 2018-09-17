@@ -1,7 +1,7 @@
 var defaults  = {
-  srcSass: `${repoDir}/public/css`,
-  destSass: `${repoDir}/public/css`,
-  js:   `${repoDir}/public/js`,
+  srcSass: `${process.repoDir}/public/css`,
+  destSass: `${process.repoDir}/public/css`,
+  js:   `${process.repoDir}/public/js`,
 };
 
 module.exports = watch = async (options) => {
