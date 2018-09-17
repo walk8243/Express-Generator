@@ -11,14 +11,16 @@ npm i express
 express -v ejs -f > /dev/null
 
 # npmモジュールのインストール
-npm i config js-yaml node-sass uglify-js
+npm i config js-yaml node-sass uglify-js walk8243-logger
 npm i mocha sinon supertest --save-dev
+npm uninstall debug morgan 
 
 # テンプレートファイルのコピー
 cp -r `dirname $0`/module `pwd`/
 cp -r `dirname $0`/views `pwd`/
 cp `dirname $0`/watch.js `pwd`/
 cp `dirname $0`/bin/www `pwd`/bin/
+cp `dirname $0`/app.js `pwd`/
 cp -r `dirname $0`/config `pwd`/
 cp `dirname $0`/gitignore_template `pwd`/.gitignore
 cp `dirname $0`/favicon.ico `pwd`/public/favicon.ico

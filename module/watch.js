@@ -33,7 +33,7 @@ function easyTryCatch(tryFunc = () => {}) {
   try {
     tryFunc();
   } catch (e) {
-    console.error(e);
+    logger.error(e);
   }
 }
 

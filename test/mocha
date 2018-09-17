@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+logger = require('walk8243-logger').color(process.env.NODE_ENV || 'development');
+
 describe('', () => {
 
 });
