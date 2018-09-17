@@ -1,43 +1,36 @@
-/*
- * 外部モジュール
- */
-const fs = require('fs');
+var defaults  = {
+  srcSass: `${process.repoDir}/public/css`,
+  destSass: `${process.repoDir}/public/css`,
+  js:   `${process.repoDir}/public/js`,
+};
 
+module.exports = watch = async (options) => {
+  options = Object.assign(defaults, options);
+  const js    = require('./watch/js')({
+          src : options.js,
+        }),
+        sass  = require('./watch/sass')({
+          src : options.srcSass,
+          dest: options.destSass,
+        }),
+        watch = require('./watch/watch');
 
-function watchFile(target = [], func) {
-  if(!Array.isArray(target)) {
-    if(typeof target === 'string') {
-      target = new Array(target);
-    } else {
-      // 配列でもファイル単体でもない場合
-      throw new TypeError('`target` is neither an array nor a single file.');
-    }
-  } else if(target.length == 0) {
-    // ファイルが指定されなかった場合
-    throw new TypeError('`target` is not specified.');
+  // sassを監視して、コンパイル
+  var sassFiles = await sass.getSassFiles(),
+      renderingSassFiles = await sass.getRenderingSassFiles();
+  if(sassFiles.length) {
+    watch.easyTryCatch(() => sass.render(renderingSassFiles));
+    watch.watchFile(sassFiles, (() => {
+      watch.easyTryCatch(() => sass.render(renderingSassFiles));
+    }));
   }
 
-  for(let file of target) {
-    if(fs.statSync(file).isFile()) {
-      fs.watchFile(file, (current, previous) => {
-        func();
-      });
-    } else {
-      // パスが存在しない場合 or ファイルでない場合
-      throw new ReferenceError('Path doesn\'t exist or isn\'t file.');
-    }
+  // jsを監視して、圧縮
+  var jsFiles = await js.getJsFiles(options.js);
+  if(jsFiles.length) {
+    watch.easyTryCatch(() => js.compress(jsFiles));
+    watch.watchFile(jsFiles, (() => {
+      watch.easyTryCatch(() => js.compress(jsFiles));
+    }));
   }
-}
-
-function easyTryCatch(tryFunc = () => {}) {
-  try {
-    tryFunc();
-  } catch (e) {
-    console.error(e);
-  }
-}
-
-module.exports = watch = {
-  watchFile,
-  easyTryCatch,
-}
+};

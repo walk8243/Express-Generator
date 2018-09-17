@@ -17,7 +17,7 @@ const sassCond  = new RegExp('.+\\.(sass|scss)'),
 
 class Sass {
   constructor(options = {}) {
-    this.src  = options.src || './public/css';
+    this.src  = options.src || `${process.repoDir}/public/css`;
     this.dest = options.dest || this.src;
   }
 
