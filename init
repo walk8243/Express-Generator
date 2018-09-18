@@ -1,0 +1,3 @@
+#!/usr/bin/env node
+
+require('walk8243-npminit')(__dirname + '/init-package.js');
