@@ -1,6 +1,6 @@
 {
   "name": "walk8243-expac",
-  "version": "3.3.3",
+  "version": "3.3.4",
   "description": "Express Application Create ~ExpressアプリケーションをSHで簡単セットアップ~",
   "repository": {
     "type": "git",
@@ -13,7 +13,7 @@
   },
   "homepage": "https://github.com/walk8243/Express-Generator#readme",
   "dependencies": {
-    "walk8243-npminit": "0.0.1"
+    "walk8243-npminit": "^1.0.1"
   },
   "devDependencies": {}
 }
